@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.example.dell.myapplication.db.userinfom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -50,6 +51,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 userinfom.setDate("asdioahsd");
                 userinfom.setIsreight(true);
                 userinfom.setName("小明");
+                ArrayList<UserData> userData1 = new ArrayList<>();
+                int a = 5;
+                for (int i = 0; i < a; i++) {
+                    UserData userData = new UserData();
+                    userData.setId("" + i);
+                    userData.setData(""+i);
+                    userData.setTime("" + i);
+                    userData1.add(userData);
+                }
+                userinfom.setMDatas(userData1);
                 DBHelper.getDaoSession().getUserinfomDao().insert(userinfom);
                 break;
             case R.id.btn1:
@@ -63,7 +74,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         DBHelper.getDaoSession().getUserinfomDao().loadAll();
                 for (int i = 0; i < all.size(); i++) {
                     com.example.dell.myapplication.db.userinfom userinfom1 = all.get(i);
-                    Log.e("yfl", "onClick: "+userinfom1.getName() );
+                    Log.e("yfl", "onClick: " + userinfom1.getName());
+                    List<UserData> mDatas = userinfom1.getMDatas();
+                    for (int i1 = 0; i1 < mDatas.size(); i1++) {
+                        UserData userData = mDatas.get(i);
+                        Log.d("yfl", "onClick: "+ userData.getData()+"/////"+userData.getId());
+                    }
                 }
                 break;
         }

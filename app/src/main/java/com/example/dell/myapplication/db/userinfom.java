@@ -1,8 +1,13 @@
 package com.example.dell.myapplication.db;
 
+import com.example.dell.myapplication.UserData;
+
+import org.greenrobot.greendao.annotation.Convert;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Generated;
+
+import java.util.List;
 
 /**
  * @version V 1.0 xxxxxxxx
@@ -22,12 +27,16 @@ public class userinfom {
     private String name;
     private boolean isreight;
     private String date;
-    @Generated(hash = 899396458)
-    public userinfom(Long id, String name, boolean isreight, String date) {
+    @Convert( converter = StringConverter.class,columnType = String.class)
+    private List<UserData> mDatas;
+    @Generated(hash = 1843789075)
+    public userinfom(Long id, String name, boolean isreight, String date,
+            List<UserData> mDatas) {
         this.id = id;
         this.name = name;
         this.isreight = isreight;
         this.date = date;
+        this.mDatas = mDatas;
     }
     @Generated(hash = 1704430872)
     public userinfom() {
@@ -55,6 +64,12 @@ public class userinfom {
     }
     public void setDate(String date) {
         this.date = date;
+    }
+    public List<UserData> getMDatas() {
+        return this.mDatas;
+    }
+    public void setMDatas(List<UserData> mDatas) {
+        this.mDatas = mDatas;
     }
 
 }
