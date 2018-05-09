@@ -34,6 +34,7 @@ public class userinfom {
             List<UserData> mDatas) {
         this.id = id;
         this.name = name;
+
         this.isreight = isreight;
         this.date = date;
         this.mDatas = mDatas;
